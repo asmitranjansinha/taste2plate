@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
+import 'package:taste2plate/screens/home.dart';
 import 'package:taste2plate/screens/login_screen.dart';
 import 'package:taste2plate/screens/signup_scree.dart';
 
@@ -20,6 +21,7 @@ class MyApp extends StatelessWidget {
       routes: {
         LoginScreen.route:(context) => const LoginScreen(),
         SignupScreen.route:(context) => const SignupScreen(),
+        HomePage.route:(context) => const HomePage(),
       },
     );
   }

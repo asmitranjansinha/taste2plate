@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:taste2plate/screens/home.dart';
 import 'package:taste2plate/screens/signup_scree.dart';
 import 'package:taste2plate/widgets/app_buttons.dart';
 import 'package:taste2plate/widgets/text_field.dart';
@@ -26,17 +27,15 @@ class LoginScreen extends StatelessWidget {
                 children: [
                   LoginSignup(
                     txt: "LOGIN",
-                    onTap: () {
-                      Navigator.pushNamedAndRemoveUntil(
-                          context, LoginScreen.route, (route) => false);
-                    },
+                    onTap: () {},
                     color: Colors.red,
                     borderSide: const BorderSide(color: Colors.red, width: 2),
                   ),
                   LoginSignup(
                     txt: "SIGN UP",
                     onTap: () {
-                      Get.to(() => SignupScreen(), transition: Transition.rightToLeft);
+                      Get.to(() => const SignupScreen(),
+                          transition: Transition.rightToLeft);
                     },
                     color: Colors.black,
                     borderSide: const BorderSide(color: Colors.transparent),
@@ -64,7 +63,12 @@ class LoginScreen extends StatelessWidget {
               SizedBox(
                   height: 50,
                   width: 350,
-                  child: GetOtp(onTap: () {}, txt: "GET OTP"))
+                  child: GetOtp(
+                      onTap: () {
+                        Navigator.pushNamedAndRemoveUntil(
+                            context, HomePage.route, (route) => false);
+                      },
+                      txt: "GET OTP"))
             ],
           ),
         ),
