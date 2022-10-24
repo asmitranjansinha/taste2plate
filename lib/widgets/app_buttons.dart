@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 
 class LoginSignup extends StatelessWidget {
@@ -20,10 +22,29 @@ class LoginSignup extends StatelessWidget {
         child: Text(
           txt,
           style: TextStyle(
-              fontSize: 20,
+              fontSize: 15,
               fontFamily: 'Poppins',
               fontWeight: FontWeight.w700,
               color: color),
+        ));
+  }
+}
+
+class GetOtp extends StatelessWidget {
+  final Function() onTap;
+  final String txt;
+
+  const GetOtp({super.key, required this.onTap, required this.txt});
+  @override
+  Widget build(Object context) {
+    return MaterialButton(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(60)),
+        color: Colors.red,
+        onPressed: onTap,
+        child: Text(
+          txt,
+          textAlign: TextAlign.center,
+          style: const TextStyle(color: Colors.white, fontFamily: 'Poppins', fontSize: 14),
         ));
   }
 }
