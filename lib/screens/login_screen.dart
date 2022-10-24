@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:taste2plate/screens/signup_scree.dart';
 import 'package:taste2plate/widgets/app_buttons.dart';
 import 'package:taste2plate/widgets/text_field.dart';
 
@@ -14,7 +15,7 @@ class LoginScreen extends StatelessWidget {
         child: SafeArea(
           child: Column(
             children: [
-              const SizedBox(height: 50),
+              const SizedBox(height: 30),
               Image.asset("assets/images/logo.png", scale: 4.2),
               const SizedBox(
                 height: 25,
@@ -33,7 +34,10 @@ class LoginScreen extends StatelessWidget {
                   ),
                   LoginSignup(
                     txt: "SIGN UP",
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.pushNamedAndRemoveUntil(
+                          context, SignupScreen.route, (route) => false);
+                    },
                     color: Colors.black,
                     borderSide: const BorderSide(color: Colors.transparent),
                   )
