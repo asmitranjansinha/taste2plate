@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:taste2plate/screens/signup_scree.dart';
 import 'package:taste2plate/widgets/app_buttons.dart';
 import 'package:taste2plate/widgets/text_field.dart';
@@ -35,8 +36,7 @@ class LoginScreen extends StatelessWidget {
                   LoginSignup(
                     txt: "SIGN UP",
                     onTap: () {
-                      Navigator.pushNamedAndRemoveUntil(
-                          context, SignupScreen.route, (route) => false);
+                      Get.to(() => SignupScreen(), transition: Transition.rightToLeft);
                     },
                     color: Colors.black,
                     borderSide: const BorderSide(color: Colors.transparent),

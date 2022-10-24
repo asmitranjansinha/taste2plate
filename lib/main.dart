@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/route_manager.dart';
 import 'package:taste2plate/screens/login_screen.dart';
 import 'package:taste2plate/screens/signup_scree.dart';
 
@@ -12,7 +13,7 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       title: 'taste2plate',
       debugShowCheckedModeBanner: false,
       home: const LoginScreen(),

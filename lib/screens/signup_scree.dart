@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../widgets/app_buttons.dart';
 import '../widgets/text_field.dart';
@@ -33,8 +34,7 @@ class _SignupScreenState extends State<SignupScreen> {
                   LoginSignup(
                     txt: "LOGIN",
                     onTap: () {
-                      Navigator.pushNamedAndRemoveUntil(
-                          context, LoginScreen.route, (route) => false);
+                      Get.to(() => const LoginScreen(), transition: Transition.leftToRight);
                     },
                     color: Colors.black,
                     borderSide: const BorderSide(color: Colors.transparent),
