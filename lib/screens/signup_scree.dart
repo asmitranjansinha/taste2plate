@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:taste2plate/screens/home.dart';
 
 import '../widgets/app_buttons.dart';
 import '../widgets/text_field.dart';
@@ -34,7 +35,8 @@ class _SignupScreenState extends State<SignupScreen> {
                   LoginSignup(
                     txt: "LOGIN",
                     onTap: () {
-                      Get.to(() => const LoginScreen(), transition: Transition.leftToRight);
+                      Get.to(() => const LoginScreen(),
+                          transition: Transition.leftToRight);
                     },
                     color: Colors.black,
                     borderSide: const BorderSide(color: Colors.transparent),
@@ -109,7 +111,12 @@ class _SignupScreenState extends State<SignupScreen> {
               SizedBox(
                   height: 50,
                   width: 350,
-                  child: GetOtp(onTap: () {}, txt: "GET OTP"))
+                  child: GetOtp(
+                      onTap: () {
+                        Navigator.pushNamedAndRemoveUntil(
+                            context, HomePage.route, (route) => false);
+                      },
+                      txt: "GET OTP"))
             ],
           ),
         ),
