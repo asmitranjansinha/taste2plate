@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:taste2plate/models/tastestoplate.dart';
 import 'package:taste2plate/screens/login_screen.dart';
 import 'package:taste2plate/services/remote_services.dart';
+import 'package:taste2plate/widgets/food_story.dart';
 import 'package:taste2plate/widgets/text_field.dart';
 
 class HomePage extends StatefulWidget {
@@ -23,9 +24,9 @@ class _HomePageState extends State<HomePage> {
     getData();
   }
 
-  getData() async{
+  getData() async {
     tastestoplate = await RemoteService().getTastestoplate();
-    if(tastestoplate != null) {
+    if (tastestoplate != null) {
       setState(() {
         isLoaded = true;
       });
@@ -267,6 +268,22 @@ class _HomePageState extends State<HomePage> {
               ],
             ),
           ),
+          const SizedBox(height: 10),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              FoodStory("assets/images/photo-1606791422814-b32c705e3e2f.jpeg",
+                  "Cooked Food"),
+              FoodStory(
+                  "assets/images/stock-photo-indian-sweets-served-silver-wooden-plate-variety-peda-burfi-laddu-decorative-selective-focus-diwali-100924860.jpg",
+                  "Sweets"),
+              FoodStory(
+                  "assets/images/various-grains-732-549-feature-thumb-1-732x549.jpg",
+                  "Grains"),
+              FoodStory("assets/images/74416043.cms.webp", "Spices"),
+              FoodStory("assets/images/istockphoto-1044330750-612x612.jpg", "Chicken")
+            ],
+          )
         ],
       ),
     );

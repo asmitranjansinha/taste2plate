@@ -14,12 +14,18 @@ class InputField extends StatelessWidget {
           fillColor: Colors.white,
           contentPadding: const EdgeInsets.all(16),
           prefixIcon: Image.asset(icon),
-          prefixIconConstraints: const BoxConstraints(maxHeight: 25, minWidth: 50),
+          prefixIconConstraints:
+              const BoxConstraints(maxHeight: 25, minWidth: 50),
           hintText: hinttxt,
-          hintStyle: const TextStyle(fontFamily: 'Poppins', color: Colors.grey, fontWeight: FontWeight.w400),
+          hintStyle: const TextStyle(
+              fontFamily: 'Poppins',
+              color: Colors.grey,
+              fontWeight: FontWeight.w400),
           focusedBorder: const OutlineInputBorder(
               borderSide: BorderSide(color: Colors.grey, width: 2)),
           border: OutlineInputBorder(borderRadius: BorderRadius.circular(7))),
     );
   }
 }
+
+
