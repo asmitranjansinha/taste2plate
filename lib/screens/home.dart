@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:taste2plate/models/tastestoplate.dart';
 import 'package:taste2plate/screens/login_screen.dart';
+import 'package:taste2plate/services/remote_services.dart';
 import 'package:taste2plate/widgets/text_field.dart';
 
 class HomePage extends StatefulWidget {
@@ -11,6 +13,26 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  Tastestoplate? tastestoplate;
+  var isLoaded = false;
+
+  @override
+  void initState() {
+    super.initState();
+
+    getData();
+  }
+
+  getData() async{
+    tastestoplate = await RemoteService().getTastestoplate();
+    if(tastestoplate != null) {
+      setState(() {
+        isLoaded = true;
+      });
+      print(tastestoplate!.slider![0].file);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
