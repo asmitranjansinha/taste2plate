@@ -281,9 +281,11 @@ class _HomePageState extends State<HomePage> {
                   "assets/images/various-grains-732-549-feature-thumb-1-732x549.jpg",
                   "Grains"),
               FoodStory("assets/images/74416043.cms.webp", "Spices"),
-              FoodStory("assets/images/istockphoto-1044330750-612x612.jpg", "Chicken")
+              FoodStory(
+                  "assets/images/istockphoto-1044330750-612x612.jpg", "Chicken")
             ],
-          )
+          ),
+          
         ],
       ),
     );
