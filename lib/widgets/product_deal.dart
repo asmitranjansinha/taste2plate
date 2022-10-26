@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_typing_uninitialized_variables
+
 import 'package:flutter/material.dart';
 
 class ProductDealCard extends StatelessWidget {
@@ -13,8 +15,8 @@ class ProductDealCard extends StatelessWidget {
     return Column(
       children: [
         Image(image: NetworkImage(image)),
-        Text(name, style: TextStyle(fontFamily: "Poppins", fontWeight: FontWeight.w500),),
-        Text(category, style: TextStyle(fontFamily: "Poppins"),),
+        Text(name, style: const TextStyle(fontFamily: "Poppins", fontWeight: FontWeight.w500),),
+        Text(category, style: const TextStyle(fontFamily: "Poppins"),),
         Text(pointExpDate)
       ],
     );

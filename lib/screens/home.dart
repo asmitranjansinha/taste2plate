@@ -1,13 +1,9 @@
-import 'dart:ui';
-
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:taste2plate/models/tastestoplate.dart';
 import 'package:taste2plate/screens/login_screen.dart';
 import 'package:taste2plate/services/remote_services.dart';
 import 'package:taste2plate/widgets/carousel.dart';
 import 'package:taste2plate/widgets/food_story.dart';
-import 'package:taste2plate/widgets/product_deal.dart';
 import 'package:taste2plate/widgets/text_field.dart';
 
 class HomePage extends StatefulWidget {
@@ -231,8 +227,8 @@ class _HomePageState extends State<HomePage> {
           ],
         ),
       ),
-      body: SingleChildScrollView(
-        physics: AlwaysScrollableScrollPhysics(),
+      body:SingleChildScrollView(
+        physics: const AlwaysScrollableScrollPhysics(),
         child: Column(
           children: [
             Container(
@@ -278,7 +274,7 @@ class _HomePageState extends State<HomePage> {
             const SizedBox(height: 10),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
+              children: const [
                 FoodStory("assets/images/photo-1606791422814-b32c705e3e2f.jpeg",
                     "Cooked Food"),
                 FoodStory(
@@ -308,7 +304,8 @@ class _HomePageState extends State<HomePage> {
                       fontFamily: "Poppins", fontSize: 23, color: Colors.white),
                 ),
               ),
-            )
+            ),
+
           ],
         ),
       ),
@@ -316,7 +313,7 @@ class _HomePageState extends State<HomePage> {
           showSelectedLabels: false,
           showUnselectedLabels: true,
           selectedLabelStyle: TextStyle(color: Colors.red),
-          unselectedLabelStyle: TextStyle(color: Colors.black),
+          unselectedLabelStyle: TextStyle(color: Colors.red),
           items: const <BottomNavigationBarItem>[
             BottomNavigationBarItem(
                 icon: Image(image: AssetImage("assets/icons/menu1-s.png")),
