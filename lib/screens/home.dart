@@ -4,6 +4,7 @@ import 'package:taste2plate/screens/login_screen.dart';
 import 'package:taste2plate/services/remote_services.dart';
 import 'package:taste2plate/widgets/carousel.dart';
 import 'package:taste2plate/widgets/food_story.dart';
+import 'package:taste2plate/widgets/product_deal.dart';
 import 'package:taste2plate/widgets/text_field.dart';
 
 class HomePage extends StatefulWidget {
@@ -15,26 +16,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  Tastestoplate? tastestoplate;
-  var isLoaded = false;
-
-  @override
-  void initState() {
-    super.initState();
-
-    getData();
-  }
-
-  getData() async {
-    tastestoplate = await RemoteService().getTastestoplate();
-    if (tastestoplate != null) {
-      setState(() {
-        isLoaded = true;
-      });
-      print(tastestoplate!.productDeal![0].file![0].originalname);
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -227,108 +208,154 @@ class _HomePageState extends State<HomePage> {
           ],
         ),
       ),
-      body:SingleChildScrollView(
-        physics: const AlwaysScrollableScrollPhysics(),
-        child: Column(
-          children: [
-            Container(
-              width: double.infinity,
-              height: 60,
-              color: Colors.red,
-              child: Column(children: const [
-                SizedBox(
-                  width: 370,
-                  child: InputField(
-                      hinttxt: "Search",
-                      icon:
-                          "assets/icons/iconfinder_-_Magnifier-Search-Zoom-_3844467.png"),
-                ),
-              ]),
-            ),
-            Container(
-              width: double.infinity,
-              height: 40,
-              color: Colors.amberAccent,
-              child: Row(
-                children: const [
-                  SizedBox(
-                    width: 10,
-                  ),
-                  Image(
-                      height: 30,
-                      image: AssetImage(
-                          "assets/icons/iconfinder_location_1814106.png")),
-                  SizedBox(
-                    width: 5,
-                  ),
-                  Text(
-                    "Select delivery location",
-                    style: TextStyle(
-                      fontFamily: "Poppins",
-                      fontWeight: FontWeight.w500,
-                    ),
-                  )
-                ],
-              ),
-            ),
-            const SizedBox(height: 10),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: const [
-                FoodStory("assets/images/photo-1606791422814-b32c705e3e2f.jpeg",
-                    "Cooked Food"),
-                FoodStory(
-                    "assets/images/stock-photo-indian-sweets-served-silver-wooden-plate-variety-peda-burfi-laddu-decorative-selective-focus-diwali-100924860.jpg",
-                    "Sweets"),
-                FoodStory(
-                    "assets/images/various-grains-732-549-feature-thumb-1-732x549.jpg",
-                    "Grains"),
-                FoodStory("assets/images/74416043.cms.webp", "Spices"),
-                FoodStory("assets/images/istockphoto-1044330750-612x612.jpg",
-                    "Chicken")
-              ],
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            CarouselCard(slider: tastestoplate!.slider),
-            const SizedBox(height: 15),
-            Container(
-              color: Colors.red,
-              width: 200,
-              height: 30,
-              child: const Center(
+      body: FutureBuilder<Tastestoplate?>(
+        future: RemoteService().getTaste(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.done) {
+            // If we got an error
+            if (snapshot.hasError) {
+              return Center(
                 child: Text(
-                  "Deals of the Day",
-                  style: TextStyle(
-                      fontFamily: "Poppins", fontSize: 23, color: Colors.white),
+                  '${snapshot.error} occurred',
+                  style: TextStyle(fontSize: 18),
                 ),
-              ),
-            ),
+              );
 
-          ],
-        ),
+              // if we got our data
+            } else if (snapshot.hasData) {
+              // Extracting data from snapshot object
+              final data = snapshot.data;
+              var productDeal;
+              if (data!.productDeal != null) {
+                productDeal = data.productDeal;
+              }
+              return SingleChildScrollView(
+                physics: const AlwaysScrollableScrollPhysics(),
+                child: Column(
+                  children: [
+                    Container(
+                      width: double.infinity,
+                      height: 60,
+                      color: Colors.red,
+                      child: Column(children: const [
+                        SizedBox(
+                          width: 370,
+                          child: InputField(
+                              hinttxt: "Search",
+                              icon:
+                                  "assets/icons/iconfinder_-_Magnifier-Search-Zoom-_3844467.png"),
+                        ),
+                      ]),
+                    ),
+                    Container(
+                      width: double.infinity,
+                      height: 40,
+                      color: Colors.amberAccent,
+                      child: Row(
+                        children: const [
+                          SizedBox(
+                            width: 10,
+                          ),
+                          Image(
+                              height: 30,
+                              image: AssetImage(
+                                  "assets/icons/iconfinder_location_1814106.png")),
+                          SizedBox(
+                            width: 5,
+                          ),
+                          Text(
+                            "Select delivery location",
+                            style: TextStyle(
+                              fontFamily: "Poppins",
+                              fontWeight: FontWeight.w500,
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                    const SizedBox(height: 10),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: const [
+                        FoodStory(
+                            "assets/images/photo-1606791422814-b32c705e3e2f.jpeg",
+                            "Cooked Food"),
+                        FoodStory(
+                            "assets/images/stock-photo-indian-sweets-served-silver-wooden-plate-variety-peda-burfi-laddu-decorative-selective-focus-diwali-100924860.jpg",
+                            "Sweets"),
+                        FoodStory(
+                            "assets/images/various-grains-732-549-feature-thumb-1-732x549.jpg",
+                            "Grains"),
+                        FoodStory("assets/images/74416043.cms.webp", "Spices"),
+                        FoodStory(
+                            "assets/images/istockphoto-1044330750-612x612.jpg",
+                            "Chicken")
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    CarouselCard(slider: data.slider),
+                    const SizedBox(height: 15),
+                    Container(
+                      color: Colors.red,
+                      width: 200,
+                      height: 30,
+                      child: const Center(
+                        child: Text(
+                          "Deals of the Day",
+                          style: TextStyle(
+                              fontFamily: "Poppins",
+                              fontSize: 23,
+                              color: Colors.white),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    for (var each in productDeal) ...[
+                      ProductDealCard(
+                          image: each.file![0].location,
+                          name: each.name,
+                          category: each.tags,
+                          pointExpDate: each.endDate)
+                    ]
+                  ],
+                ),
+              );
+            }
+          }
+
+          // Displaying LoadingSpinner to indicate waiting state
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
+        },
       ),
       bottomNavigationBar: BottomNavigationBar(
-          showSelectedLabels: false,
+          showSelectedLabels: true,
           showUnselectedLabels: true,
+          selectedItemColor: Colors.red,
+          unselectedItemColor: Colors.black54,
+          unselectedIconTheme: IconThemeData(color: Colors.black54),
           selectedLabelStyle: TextStyle(color: Colors.red),
-          unselectedLabelStyle: TextStyle(color: Colors.red),
+          unselectedLabelStyle: TextStyle(color: Colors.black54),
           items: const <BottomNavigationBarItem>[
             BottomNavigationBarItem(
                 icon: Image(image: AssetImage("assets/icons/menu1-s.png")),
                 label: 'Deals'),
             BottomNavigationBarItem(
-                icon: Image(image: AssetImage("assets/icons/menu2-s.png")),
+                icon: Image(image: AssetImage("assets/icons/menu2-s.png"), color: Colors.black54,),
                 label: 'City'),
             BottomNavigationBarItem(
-                icon: Image(image: AssetImage("assets/icons/menu3-s.png")),
+                icon: Image(image: AssetImage("assets/icons/menu3-s.png"), color: Colors.black54),
                 label: 'Brand'),
             BottomNavigationBarItem(
-                icon: Image(image: AssetImage("assets/icons/menu5-s.png")),
+                icon: Image(image: AssetImage("assets/icons/menu5-s.png"), color: Colors.black54),
                 label: 'Category'),
             BottomNavigationBarItem(
-                icon: Image(image: AssetImage("assets/icons/menu4-s.png")),
+                icon: Image(image: AssetImage("assets/icons/menu4-s.png"), color: Colors.black54),
                 label: 'Bulk Order'),
           ]),
     );
