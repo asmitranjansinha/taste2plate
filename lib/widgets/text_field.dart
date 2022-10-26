@@ -10,6 +10,8 @@ class InputField extends StatelessWidget {
   Widget build(Object context) {
     return TextFormField(
       decoration: InputDecoration(
+          filled: true,
+          fillColor: Colors.white,
           contentPadding: const EdgeInsets.all(16),
           prefixIcon: Image.asset(icon),
           prefixIconConstraints: const BoxConstraints(maxHeight: 25, minWidth: 50),
