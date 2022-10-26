@@ -1,8 +1,13 @@
+import 'dart:ui';
+
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:taste2plate/models/tastestoplate.dart';
 import 'package:taste2plate/screens/login_screen.dart';
 import 'package:taste2plate/services/remote_services.dart';
+import 'package:taste2plate/widgets/carousel.dart';
 import 'package:taste2plate/widgets/food_story.dart';
+import 'package:taste2plate/widgets/product_deal.dart';
 import 'package:taste2plate/widgets/text_field.dart';
 
 class HomePage extends StatefulWidget {
@@ -30,7 +35,7 @@ class _HomePageState extends State<HomePage> {
       setState(() {
         isLoaded = true;
       });
-      print(tastestoplate!.slider![0].file);
+      print(tastestoplate!.productDeal![0].file![0].originalname);
     }
   }
 
@@ -226,68 +231,109 @@ class _HomePageState extends State<HomePage> {
           ],
         ),
       ),
-      body: Column(
-        children: [
-          Container(
-            width: double.infinity,
-            height: 60,
-            color: Colors.red,
-            child: Column(children: const [
-              SizedBox(
-                width: 370,
-                child: InputField(
-                    hinttxt: "Search",
-                    icon:
-                        "assets/icons/iconfinder_-_Magnifier-Search-Zoom-_3844467.png"),
-              ),
-            ]),
-          ),
-          Container(
-            width: double.infinity,
-            height: 40,
-            color: Colors.amberAccent,
-            child: Row(
-              children: const [
+      body: SingleChildScrollView(
+        physics: AlwaysScrollableScrollPhysics(),
+        child: Column(
+          children: [
+            Container(
+              width: double.infinity,
+              height: 60,
+              color: Colors.red,
+              child: Column(children: const [
                 SizedBox(
-                  width: 10,
+                  width: 370,
+                  child: InputField(
+                      hinttxt: "Search",
+                      icon:
+                          "assets/icons/iconfinder_-_Magnifier-Search-Zoom-_3844467.png"),
                 ),
-                Image(
-                    height: 30,
-                    image: AssetImage(
-                        "assets/icons/iconfinder_location_1814106.png")),
-                SizedBox(
-                  width: 5,
-                ),
-                Text(
-                  "Select delivery location",
-                  style: TextStyle(
-                    fontFamily: "Poppins",
-                    fontWeight: FontWeight.w500,
+              ]),
+            ),
+            Container(
+              width: double.infinity,
+              height: 40,
+              color: Colors.amberAccent,
+              child: Row(
+                children: const [
+                  SizedBox(
+                    width: 10,
                   ),
-                )
+                  Image(
+                      height: 30,
+                      image: AssetImage(
+                          "assets/icons/iconfinder_location_1814106.png")),
+                  SizedBox(
+                    width: 5,
+                  ),
+                  Text(
+                    "Select delivery location",
+                    style: TextStyle(
+                      fontFamily: "Poppins",
+                      fontWeight: FontWeight.w500,
+                    ),
+                  )
+                ],
+              ),
+            ),
+            const SizedBox(height: 10),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                FoodStory("assets/images/photo-1606791422814-b32c705e3e2f.jpeg",
+                    "Cooked Food"),
+                FoodStory(
+                    "assets/images/stock-photo-indian-sweets-served-silver-wooden-plate-variety-peda-burfi-laddu-decorative-selective-focus-diwali-100924860.jpg",
+                    "Sweets"),
+                FoodStory(
+                    "assets/images/various-grains-732-549-feature-thumb-1-732x549.jpg",
+                    "Grains"),
+                FoodStory("assets/images/74416043.cms.webp", "Spices"),
+                FoodStory("assets/images/istockphoto-1044330750-612x612.jpg",
+                    "Chicken")
               ],
             ),
-          ),
-          const SizedBox(height: 10),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              FoodStory("assets/images/photo-1606791422814-b32c705e3e2f.jpeg",
-                  "Cooked Food"),
-              FoodStory(
-                  "assets/images/stock-photo-indian-sweets-served-silver-wooden-plate-variety-peda-burfi-laddu-decorative-selective-focus-diwali-100924860.jpg",
-                  "Sweets"),
-              FoodStory(
-                  "assets/images/various-grains-732-549-feature-thumb-1-732x549.jpg",
-                  "Grains"),
-              FoodStory("assets/images/74416043.cms.webp", "Spices"),
-              FoodStory(
-                  "assets/images/istockphoto-1044330750-612x612.jpg", "Chicken")
-            ],
-          ),
-          
-        ],
+            const SizedBox(
+              height: 10,
+            ),
+            CarouselCard(slider: tastestoplate!.slider),
+            const SizedBox(height: 15),
+            Container(
+              color: Colors.red,
+              width: 200,
+              height: 30,
+              child: const Center(
+                child: Text(
+                  "Deals of the Day",
+                  style: TextStyle(
+                      fontFamily: "Poppins", fontSize: 23, color: Colors.white),
+                ),
+              ),
+            )
+          ],
+        ),
       ),
+      bottomNavigationBar: BottomNavigationBar(
+          showSelectedLabels: false,
+          showUnselectedLabels: true,
+          selectedLabelStyle: TextStyle(color: Colors.red),
+          unselectedLabelStyle: TextStyle(color: Colors.black),
+          items: const <BottomNavigationBarItem>[
+            BottomNavigationBarItem(
+                icon: Image(image: AssetImage("assets/icons/menu1-s.png")),
+                label: 'Deals'),
+            BottomNavigationBarItem(
+                icon: Image(image: AssetImage("assets/icons/menu2-s.png")),
+                label: 'City'),
+            BottomNavigationBarItem(
+                icon: Image(image: AssetImage("assets/icons/menu3-s.png")),
+                label: 'Brand'),
+            BottomNavigationBarItem(
+                icon: Image(image: AssetImage("assets/icons/menu5-s.png")),
+                label: 'Category'),
+            BottomNavigationBarItem(
+                icon: Image(image: AssetImage("assets/icons/menu4-s.png")),
+                label: 'Bulk Order'),
+          ]),
     );
   }
 }
