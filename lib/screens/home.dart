@@ -329,7 +329,9 @@ class _HomePageState extends State<HomePage> {
 
           // Displaying LoadingSpinner to indicate waiting state
           return const Center(
-            child: CircularProgressIndicator(),
+            child: CircularProgressIndicator(
+              color: Colors.red,
+            ),
           );
         },
       ),
