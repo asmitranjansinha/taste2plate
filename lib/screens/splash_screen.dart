@@ -28,8 +28,11 @@ class _SplashScreenState extends State<SplashScreen> {
     return Scaffold(
       backgroundColor: Colors.red,
       body: Center(
-        child: Image.asset("assets/images/final-splash-screen.png",
-            fit: BoxFit.contain),
+        child: Image.asset(
+          width: double.infinity,
+          "assets/images/final-splash-screen.png",
+          fit: BoxFit.cover,
+        ),
       ),
     );
   }
