@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:taste2plate/screens/home.dart';
 import 'package:taste2plate/screens/login_screen.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -11,7 +10,6 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-
   @override
   void initState() {
     super.initState();
@@ -21,9 +19,9 @@ class _SplashScreenState extends State<SplashScreen> {
   _navigatetohome() async {
     await Future.delayed(const Duration(milliseconds: 2000), (() {}));
     // ignore: use_build_context_synchronously
-    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const LoginScreen()));
+    Navigator.pushReplacement(
+        context, MaterialPageRoute(builder: (context) => const LoginScreen()));
   }
-
 
   @override
   Widget build(BuildContext context) {
