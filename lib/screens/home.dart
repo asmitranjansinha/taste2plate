@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:taste2plate/models/tastestoplate.dart';
 import 'package:taste2plate/screens/login_screen.dart';
-import 'package:taste2plate/services/remote_services.dart';
+import 'package:taste2plate/services/content_service.dart';
 import 'package:taste2plate/widgets/carousel.dart';
 import 'package:taste2plate/widgets/food_story.dart';
 import 'package:taste2plate/widgets/product_deal.dart';
@@ -348,16 +348,25 @@ class _HomePageState extends State<HomePage> {
                 icon: Image(image: AssetImage("assets/icons/menu1-s.png")),
                 label: 'Deals'),
             BottomNavigationBarItem(
-                icon: Image(image: AssetImage("assets/icons/menu2-s.png"), color: Colors.black54,),
+                icon: Image(
+                  image: AssetImage("assets/icons/menu2-s.png"),
+                  color: Colors.black54,
+                ),
                 label: 'City'),
             BottomNavigationBarItem(
-                icon: Image(image: AssetImage("assets/icons/menu3-s.png"), color: Colors.black54),
+                icon: Image(
+                    image: AssetImage("assets/icons/menu3-s.png"),
+                    color: Colors.black54),
                 label: 'Brand'),
             BottomNavigationBarItem(
-                icon: Image(image: AssetImage("assets/icons/menu5-s.png"), color: Colors.black54),
+                icon: Image(
+                    image: AssetImage("assets/icons/menu5-s.png"),
+                    color: Colors.black54),
                 label: 'Category'),
             BottomNavigationBarItem(
-                icon: Image(image: AssetImage("assets/icons/menu4-s.png"), color: Colors.black54),
+                icon: Image(
+                    image: AssetImage("assets/icons/menu4-s.png"),
+                    color: Colors.black54),
                 label: 'Bulk Order'),
           ]),
     );

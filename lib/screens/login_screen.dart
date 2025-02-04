@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:taste2plate/screens/home.dart';
-import 'package:taste2plate/screens/signup_scree.dart';
+import 'package:taste2plate/screens/signup_screen.dart';
 import 'package:taste2plate/widgets/app_buttons.dart';
 import 'package:taste2plate/widgets/text_field.dart';
 
@@ -61,14 +61,15 @@ class LoginScreen extends StatelessWidget {
                 height: 30,
               ),
               SizedBox(
-                  height: 50,
-                  width: 350,
-                  child: GetOtp(
-                      onTap: () {
-                        Navigator.pushNamedAndRemoveUntil(
-                            context, HomePage.route, (route) => false);
-                      },
-                      txt: "GET OTP"))
+                height: 50,
+                width: 350,
+                child: GetOtp(
+                    onTap: () {
+                      Navigator.pushNamedAndRemoveUntil(
+                          context, HomePage.route, (route) => false);
+                    },
+                    txt: "GET OTP"),
+              )
             ],
           ),
         ),
