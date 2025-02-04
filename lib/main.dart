@@ -12,7 +12,6 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
@@ -20,12 +19,11 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: const SplashScreen(),
       routes: {
-        LoginScreen.route:(context) => const LoginScreen(),
-        SignupScreen.route:(context) => const SignupScreen(),
-        HomePage.route:(context) => const HomePage(),
-        SplashScreen.route:(context) => const SplashScreen(),
+        LoginScreen.route: (context) => const LoginScreen(),
+        SignupScreen.route: (context) => const SignupScreen(),
+        HomePage.route: (context) => const HomePage(),
+        SplashScreen.route: (context) => const SplashScreen(),
       },
     );
   }
 }
-
