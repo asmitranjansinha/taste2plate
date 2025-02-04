@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:taste2plate/screens/home.dart';
+import 'package:taste2plate/views/home.dart';
 
 import '../widgets/app_buttons.dart';
 import '../widgets/text_field.dart';

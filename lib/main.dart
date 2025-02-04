@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
-import 'package:taste2plate/screens/home.dart';
-import 'package:taste2plate/screens/login_screen.dart';
-import 'package:taste2plate/screens/signup_screen.dart';
-import 'package:taste2plate/screens/splash_screen.dart';
+import 'package:taste2plate/views/home.dart';
+import 'package:taste2plate/views/login_screen.dart';
+import 'package:taste2plate/views/signup_screen.dart';
+import 'package:taste2plate/views/splash_screen.dart';
 
 void main() {
   runApp(const MyApp());

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:taste2plate/screens/home.dart';
-import 'package:taste2plate/screens/signup_screen.dart';
+import 'package:taste2plate/views/home.dart';
+import 'package:taste2plate/views/signup_screen.dart';
 import 'package:taste2plate/widgets/app_buttons.dart';
 import 'package:taste2plate/widgets/text_field.dart';
 
